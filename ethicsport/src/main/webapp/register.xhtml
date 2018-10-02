@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+	<ui:composition template="template.xhtml"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
+		<ui:define name="title">Registrácia</ui:define>
+
+		<ui:define name="content">
+			     
+			<div class="row" style="display: inherit;">
+		        <h1 style="text-align: center;">Registrácia</h1>
+		        <div style="width: 30%; margin: 25px auto;">
+		            <h:form id="registerForm" accept-charset="UTF-8">
+		            	<div class="form-group">
+		                    <h:outputLabel for="firstName" value="Meno"/>
+		                    <p:inputText id="firstName" styleClass="form-control" value="#{user.firstName}" placeholder="Meno"/>		                    
+		                </div>
+						
+						<div class="form-group">
+		                    <h:outputLabel for="lastName" value="Priezvisko"/>
+		                    <p:inputText id="lastName" styleClass="form-control" value="#{user.lastName}" placeholder="Priezvisko"/>		                    
+		                </div>
+		                
+		                <div class="form-group">
+		                    <h:outputLabel for="login" value="Login"/>
+		                    <p:inputText id="login" styleClass="form-control" value="#{user.login}" placeholder="Login"/>		                    
+		                </div>
+		                
+		                <div class="form-group">
+		                    <h:outputLabel for="heslo" value="Heslo"/>
+		                    <p:password id="heslo" styleClass="form-control" value="#{user.password}" placeholder="Heslo"/>		                    
+		                </div>
+		                
+		                <div class="form-group">
+		                    <h:outputLabel for="email" value="Email"/>
+		                    <p:inputText id="email" styleClass="form-control" value="#{user.email}" placeholder="Email"/>		                    
+		                </div>
+
+						<div class="form-group">
+							<p:commandButton value="Registruj" id="ajax" update="growl registerForm" actionListener="#{registerController.execute}" 
+								styleClass="ui-priority-primary btn-lg btn-block" resetValues="true"/>								
+						</div>				
+
+					</h:form>    
+		        </div>
+		    </div>
+				
+		</ui:define>
+	</ui:composition>

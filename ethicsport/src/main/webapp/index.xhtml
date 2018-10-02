@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="title">EthicSport.sk</ui:define>
+<!-- 		<ui:define name="top">EthicSport.sk Top Section</ui:define> -->
+		<ui:define name="content">
+		
+			<h1>Products</h1>
+			<br />	
+<!-- 			<h:form> -->
+<!-- 				<p:inputText value="#{userController.filterUser}" /> -->
+<!-- 				<p:commandButton value="Submit" action="search" /> -->
+<!-- 			</h:form> -->
+			<br/>
+			<p:dataTable var="usr" value="#{userController.users}">
+			    <p:column headerText="First Name">
+			        <h:outputText value="#{usr.firstName}" />
+			    </p:column>
+			    <p:column headerText="Last Name">
+			        <h:outputText value="#{usr.lastName}" />
+			    </p:column>
+			</p:dataTable>
+			<br />
+			<h:link value="Contact Us" outcome="contactUs" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

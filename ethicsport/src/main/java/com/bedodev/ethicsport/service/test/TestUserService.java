@@ -36,7 +36,7 @@ public class TestUserService extends TestCase {
 		userService = new UserService();
 		IUserDAO userDAO = mock(IUserDAO.class);
 		List<User> userList = createUsers();
-		when(userDAO.fetchUsers()).thenReturn(userList);
+		when(userDAO.getUsers()).thenReturn(userList);
 		userService.setUserDAO(userDAO);
 	};
 	

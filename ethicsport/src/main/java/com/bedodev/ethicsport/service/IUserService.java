@@ -11,12 +11,18 @@ import com.bedodev.ethicsport.dto.User;
 public interface IUserService {
 	
 	/**
+	 * Return a collection of User objects
+	 * @return list of users
+	 */
+	public List<User> getUsers();
+	
+	/**
 	 * Return a collection of filterd User objects
 	 * @param filter
 	 * @return list of users
 	 */
 	public List<User> filterUsers(String filter);
-
+	
 	/**
 	 * Save the user, probably registration
 	 * @param user

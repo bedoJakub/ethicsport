@@ -4,40 +4,31 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.faces.bean.ViewScoped;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bedodev.ethicsport.dto.User;
 import com.bedodev.ethicsport.service.IUserService;
 
 @Controller
-@RequestMapping("/user")
-@Named
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class UserController {
 
 	private String filterUser;
 	private List<User> users;
 	
-	@Inject
+	@Autowired
 	private IUserService userService;
 	
 	@PostConstruct
 	public void init() {
-		 users = userService.filterUsers(null);
+//		 users = userService.filterUsers(null);
+		users = userService.getUsers();
 	}
-	
-	@RequestMapping("/list")
-	public String listUsers(Model paModel){
-		return "list-users";
-	}
-		
+			
 	public List<User> getUsers(){
 		return users;
 	}

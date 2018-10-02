@@ -12,7 +12,7 @@
 <!-- 		<ui:define name="top">EthicSport.sk Top Section</ui:define> -->
 		<ui:define name="content">
 		
-			<h1>Products</h1>
+			<h1>#{msg.Products}</h1>
 			<br />	
 <!-- 			<h:form> -->
 <!-- 				<p:inputText value="#{userController.filterUser}" /> -->
@@ -20,10 +20,10 @@
 <!-- 			</h:form> -->
 			<br/>
 			<p:dataTable var="usr" value="#{userController.users}">
-			    <p:column headerText="First Name">
+			    <p:column headerText="#{msg.FirstName}">
 			        <h:outputText value="#{usr.firstName}" />
 			    </p:column>
-			    <p:column headerText="Last Name">
+			    <p:column headerText="#{msg.LastName}">
 			        <h:outputText value="#{usr.lastName}" />
 			    </p:column>
 			</p:dataTable>

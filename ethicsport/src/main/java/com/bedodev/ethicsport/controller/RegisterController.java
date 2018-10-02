@@ -4,8 +4,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -13,10 +13,11 @@ import com.bedodev.ethicsport.dto.User;
 import com.bedodev.ethicsport.service.IUserService;
 
 @Controller
-@Named
 @ManagedBean
 @RequestScoped
 public class RegisterController {
+	
+	final static Logger logger = Logger.getLogger(RegisterController.class);
 	
 	@Autowired
 	private IUserService userService;
@@ -25,17 +26,18 @@ public class RegisterController {
 	private User user;
 	
 	public void execute() {
-//		String output = null;
+		logger.info("Executing register user");
 		FacesContext currentInstance = FacesContext.getCurrentInstance();
 		FacesMessage fm = null;
 		try {
-			userService.save(user);			
-			 fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Pridaný", "Používate¾ bol pridaný.");			
-//			output = "succesful";
+			userService.save(user);
+			logger.info("Registering user successful " + user.getLogin());
+			fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Pridaný", "Používate¾ bol pridaný.");			
 			user = null;
 		} catch (Exception e) {
+			logger.error("Error while registering new user " + e.getMessage());
+			
 			e.printStackTrace();
-//			output="fail";
 			fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nepridaný", "Používate¾ nebol pridaný.");
 		}
 		currentInstance.addMessage(null, fm);		

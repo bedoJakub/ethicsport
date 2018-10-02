@@ -3,23 +3,26 @@ package com.bedodev.ethicsport.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bedodev.ethicsport.dao.IUserDAO;
 import com.bedodev.ethicsport.dto.User;
 
-@Named
+
+@Service
 public class UserService implements IUserService {
 
-	@Inject
+	@Autowired
 	private IUserDAO userDAO;
+	
 	private List<User> users;
 	
 	@Override
 	public List<User> filterUsers(String filter) {
 		if(users == null) {
-			users = getUserDAO().fetchUsers();
+			users = getUserDAO().getUsers();
 		}
 		List<User> filterd = new ArrayList<User>();
 		if(filter == null || filter.length() == 0) {
@@ -44,17 +47,24 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional
 	public void save(User paUser) throws Exception {
 		if(paUser == null || paUser.getLogin() == null || paUser.getLogin().isEmpty()) {
 			throw new Exception("Login povinný");
 		}
 		if(users == null) {
-			users = getUserDAO().fetchUsers();
+			users = getUserDAO().getUsers();
 		}
 		users.add(paUser);
 				
 		userDAO.insert(paUser);
 		
+	}
+
+	@Override
+	@Transactional
+	public List<User> getUsers() {
+		return userDAO.getUsers();
 	}
 
 }

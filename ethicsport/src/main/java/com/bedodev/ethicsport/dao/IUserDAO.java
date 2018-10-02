@@ -6,7 +6,7 @@ import com.bedodev.ethicsport.dto.User;
 
 public interface IUserDAO {
 	
-	public List<User> fetchUsers();
+	public List<User> getUsers();
 	
 	public void insert(User user) throws Exception;
 	
